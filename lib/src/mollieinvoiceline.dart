@@ -1,4 +1,3 @@
-
 import 'mollieamount.dart';
 import 'mollieamount.dart';
 
@@ -26,5 +25,4 @@ class MollieInvoiceLineRequest {
     description = data["description"];
     vatPercentage = data["vatPercentage"];
   }
-
 }
