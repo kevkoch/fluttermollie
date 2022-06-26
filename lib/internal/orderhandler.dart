@@ -26,7 +26,7 @@ class OrderHandler {
 
   /// List all orders
   Future<List<MollieOrderResponse>> listOrders() async {
-    List<MollieOrderResponse> orders = new List();
+    List<MollieOrderResponse> orders = [];
 
     var res = await http.get(
       Uri.parse(_apiEndpoint),
@@ -69,7 +69,7 @@ class OrderHandler {
   /// This endpoint can be used to update the billing and/or shipping address of an order.
   Future<MollieOrderResponse> update(String orderId,
       MollieAddress billingAddress, MollieAddress shippingAddress) async {
-    Map data;
+    Map? data;
 
     if (billingAddress != null && shippingAddress != null) {
       data = {
@@ -97,9 +97,9 @@ class OrderHandler {
     var res = await http.patch(
         Uri.parse(_apiEndpoint +
             "/" +
-            orderLine.orderId +
+            orderLine.orderId! +
             "/lines/" +
-            orderLine.orderLineId),
+            orderLine.orderLineId!),
         headers: _headers,
         body: orderLine.toJson());
 

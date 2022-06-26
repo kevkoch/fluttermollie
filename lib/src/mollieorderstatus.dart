@@ -7,9 +7,9 @@ import 'package:mollie/src/mollieproduct.dart';
 /// Builds a list view of all orders
 class MollieOrderStatus extends StatefulWidget {
   final List<MollieOrderResponse> orders;
-  final Function(MollieOrderResponse) onSelectOrder;
+  final Function(MollieOrderResponse)? onSelectOrder;
 
-  MollieOrderStatus({@required this.orders, this.onSelectOrder});
+  MollieOrderStatus({required this.orders, this.onSelectOrder});
 
   _MollieOrderStatusState createState() => _MollieOrderStatusState();
 }
@@ -17,7 +17,7 @@ class MollieOrderStatus extends StatefulWidget {
 class _MollieOrderStatusState extends State<MollieOrderStatus> {
   List<String> orderStatus = ["Created", "Pending", "Paid", "Shipped"];
 
-  Widget shippmentProcess(String status) {
+  Widget shippmentProcess(String? status) {
     int statusIndex = -1;
 
     switch (status) {
@@ -34,7 +34,7 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
         statusIndex = 3;
     }
 
-    List<Widget> container = new List();
+    List<Widget> container = [];
 
     for (int i = 0; i < orderStatus.length; i++) {
       container.add(Expanded(
@@ -75,19 +75,19 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
             MollieOrderResponse o = widget.orders[index];
 
             DateTime date = new DateTime.fromMillisecondsSinceEpoch(
-                DateTime.parse(o.createdAt).millisecondsSinceEpoch);
+                DateTime.parse(o.createdAt!).millisecondsSinceEpoch);
             var formatter = new DateFormat("dd.MM.yyyy");
             String formattedDate = formatter.format(date);
 
             int items = 0;
 
             for (MollieProductResponse p in o.products) {
-              items += p.quantity;
+              items += p.quantity!;
             }
 
             return GestureDetector(
                 onTap: () {
-                  widget.onSelectOrder(o);
+                  widget.onSelectOrder!(o);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(10),
@@ -121,7 +121,7 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(o.orderNumber)
+                                          Text(o.orderNumber!)
                                         ],
                                       )),
                                   Container(
@@ -135,7 +135,7 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(o.amount.value)
+                                          Text(o.amount.value!)
                                         ],
                                       )),
                                   Container(
@@ -163,7 +163,7 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
                             padding: const EdgeInsets.all(5),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Status: " + o.status,
+                              "Status: " + o.status!,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),

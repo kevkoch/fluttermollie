@@ -37,9 +37,9 @@ class Mollie {
         .invokeMethod('startPayment', {"checkoutUrl": checkoutUrl});
   }
 
-  static MollieOrderResponse _currentOrder;
+  static MollieOrderResponse? _currentOrder;
 
-  static MollieOrderResponse getCurrentOrder() => _currentOrder;
+  static MollieOrderResponse? getCurrentOrder() => _currentOrder;
 
   static MollieOrderResponse setCurrentOrder(MollieOrderResponse order) =>
       _currentOrder = order;

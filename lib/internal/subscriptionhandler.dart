@@ -76,7 +76,7 @@ class SubscriptionHandler {
       headers: _headers,
     );
 
-    List<MollieSubscriptionResponse> subs = new List();
+    List<MollieSubscriptionResponse> subs = [];
 
     dynamic data = json.decode(res.body);
 

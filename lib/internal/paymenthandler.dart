@@ -71,7 +71,7 @@ class PaymentHandler {
       headers: _headers,
     );
 
-    List<MolliePaymentResponse> subs = new List();
+    List<MolliePaymentResponse> subs = [];
 
     dynamic data = json.decode(res.body);
 

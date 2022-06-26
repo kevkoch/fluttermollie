@@ -62,7 +62,7 @@ class CustomerHandler {
 
   /// Retrieve all customers created.
   Future<List<MollieCustomer>> listCustomers() async {
-    List<MollieCustomer> customers = new List();
+    List<MollieCustomer> customers = [];
 
     var res = await http.get(
       Uri.parse(_apiEndpoint),
