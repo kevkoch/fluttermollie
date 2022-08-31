@@ -102,8 +102,7 @@ class _MollieCheckoutState extends State<MollieCheckout> {
       if (m["enable"] == true) {
         paymentMethods.add(Container(
             padding: const EdgeInsets.all(5),
-            child: FlatButton(
-                color: style!.buttonColor,
+            child: TextButton(
                 onPressed: () {
                   _setMethod(m["method"]);
                 },
