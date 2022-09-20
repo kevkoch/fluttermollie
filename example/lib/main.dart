@@ -1,9 +1,7 @@
-import 'dart:convert';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:mollie/mollie.dart';
-import 'package:http/http.dart' as http;
 
 void main() => runApp(MaterialApp(initialRoute: "home", routes: {
       "home": (context) => MyApp(),
@@ -157,7 +155,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(onPressed: () {
+        child: TextButton(onPressed: () {
           createOrder(null);
         }),
       ),
